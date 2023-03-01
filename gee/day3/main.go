@@ -14,7 +14,7 @@ func main() {
 		c.String(http.StatusOK, "hello %s, you're visiting %s\n", c.Query("name"), c.Path)
 	})
 	e.POST("/login", func(c *gee.Context) {
-		c.Json(http.StatusOK, gee.H{ //用h代替map[string] interface{}，可以少写不少代码
+		c.Json(http.StatusOK, gee.H{
 			"username": c.PostForm("username"),
 			"passport": c.PostForm("passport"),
 		})
