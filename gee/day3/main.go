@@ -13,6 +13,16 @@ func main() {
 	e.GET("/hello", func(c *gee.Context) {
 		c.String(http.StatusOK, "hello %s, you're visiting %s\n", c.Query("name"), c.Path)
 	})
+
+	e.GET("/hello/:name", func(c *gee.Context) {
+		// expect /hello/geektutu
+		c.String(http.StatusOK, "hello %s, you're at %s\n", c.Param("name"), c.Path)
+	})
+
+	e.GET("/assets/*filepath", func(c *gee.Context) {
+		c.Json(http.StatusOK, gee.H{"filepath": c.Param("filepath")})
+	})
+
 	e.POST("/login", func(c *gee.Context) {
 		c.Json(http.StatusOK, gee.H{
 			"username": c.PostForm("username"),

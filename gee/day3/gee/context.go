@@ -22,11 +22,17 @@ type Context struct {
 	Writer     http.ResponseWriter
 	Path       string
 	Method     string
+	Params     map[string]string
 	StatusCode int
 }
 
 func (c *Context) Query(key string) string {
 	return c.Req.URL.Query().Get(key)
+}
+
+func (c *Context) Param(key string) string {
+	v, _ := c.Params[key]
+	return v
 }
 
 func (c *Context) PostForm(key string) string {
