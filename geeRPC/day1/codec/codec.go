@@ -11,7 +11,7 @@ type Header struct {
 type Codec interface {
 	io.Closer
 	ReadHeader(*Header) error
-	ReadBod(interface{}) error
+	ReadBody(interface{}) error
 	Write(*Header, interface{}) error
 }
 
